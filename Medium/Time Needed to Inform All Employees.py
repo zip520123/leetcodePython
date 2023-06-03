@@ -1,5 +1,5 @@
 # Time Needed to Inform All Employees
-# O(n), O(n)
+#DFS O(n), O(n)
 def numOfMinutes(self, n: int, headID: int, manager: List[int], informTime: List[int]) -> int:
     graph = collections.defaultdict(list)
     for i,m in enumerate(manager):
@@ -11,3 +11,18 @@ def numOfMinutes(self, n: int, headID: int, manager: List[int], informTime: List
         return time + informTime[node]
 
     return dfs(headID)
+
+#BFS O(n),O(n)
+def numOfMinutes(self, n: int, headID: int, manager: List[int], informTime: List[int]) -> int:
+    graph = collections.defaultdict(list)
+    for i,m in enumerate(manager):
+        graph[m].append(i)
+    
+    queue = [(headID, 0)]
+    res = 0
+    while queue:
+        node, t = queue.pop()
+        res = max(res, t)
+        for subNode in graph[node]:
+            queue.append((subNode, t+informTime[node]))
+    return res
