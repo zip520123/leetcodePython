@@ -13,3 +13,8 @@ def checkStraightLine(self, coordinates: List[List[int]]) -> bool:
         dy2 = y1-y2
         if dx1*dy2 != dx2*dy1: return False
     return True
+
+"""
+dx1/dy1 = dx2/dy2
+dx1*dy2 = dx2*dy1
+"""
