@@ -29,7 +29,7 @@ def latestDayToCross(self, row: int, col: int, cells: List[List[int]]) -> int:
     
     l, r = 1, row*col
     while l<r:
-        mid = l+((r-l)>>2)
+        mid = l+((r-l)>>1)
         if canCross(mid):
             l = mid+1
         else:
