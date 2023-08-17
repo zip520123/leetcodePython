@@ -19,7 +19,7 @@ def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
             for dx, dy in [(0,1),(1,0),(-1,0),(0,-1)]:
                 nextRow = row+dy
                 nextCol = col+dx
-                if nextRow >= 0 and nextRow < rows and nextCol >= 0 and nextCol < cols and dp[nextRow][nextCol] == -1:
+                if 0 <= nextRow < rows and 0 <= nextCol < cols and dp[nextRow][nextCol] == -1:
                     dp[nextRow][nextCol] = val + 1
                     queue.append([nextRow, nextCol])
     return dp
