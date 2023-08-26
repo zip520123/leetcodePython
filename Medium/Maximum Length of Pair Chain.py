@@ -19,3 +19,14 @@ def findLongestChain(self, pairs: List[List[int]]) -> int:
     for i in range(n):
         res = max(res, dfs(i))
     return res
+
+# O(n log n), O(1), greedy
+def findLongestChain(self, pairs: List[List[int]]) -> int:
+    pairs.sort(key= lambda x: x[1])
+    curr = float('-inf')
+    res = 0
+    for pair in pairs:
+        if curr < pair[0]:
+            res += 1
+            curr = pair[1]
+    return res
