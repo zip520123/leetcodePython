@@ -2,7 +2,7 @@
 # O(n log n), O(n)
 def minimumEffortPath(self, heights: List[List[int]]) -> int:
     rows, cols = len(heights), len(heights[0])
-    memo = defaultdict((lambda: math.inf))
+    memo = defaultdict(lambda: math.inf)
     memo[(0,0)] = 0
     minHeap = [(0,0,0)]
 
