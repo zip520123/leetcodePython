@@ -25,6 +25,7 @@ def backspaceCompare(self, s: str, t: str) -> bool:
                 l -= 1
             elif d1 > 0:
                 l -= 1
+                d1 -= 1
             else:
                 break
         while r>=0:
@@ -33,6 +34,7 @@ def backspaceCompare(self, s: str, t: str) -> bool:
                 r -= 1
             elif d2 > 0:
                 r -= 1
+                d2 -= 1
             else:
                 break
         if l == -1 and r == -1: return True
