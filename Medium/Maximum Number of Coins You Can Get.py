@@ -9,3 +9,12 @@ def maxCoins(self, piles: List[int]) -> int:
         piles.pop(0)
     return res
 
+
+# O(n log n), O(1)
+def maxCoins(self, piles: List[int]) -> int:
+    res = 0
+    piles.sort()
+    n = len(piles)
+    for i in range(n//3,n,2):
+        res += piles[i]
+    return res
