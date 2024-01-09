@@ -9,7 +9,7 @@ def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> b
 
 # O(n), O(w)
 def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
-    def dfs(node: Optional[TreeNode]) -> [int]:
+    def bfs(node: Optional[TreeNode]) -> [int]:
         stack = []
         curr = node
         res = []
@@ -23,4 +23,4 @@ def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> b
             curr = curr.right
         return res
         
-    return dfs(root1) == dfs(root2)
+    return bfs(root1) == bfs(root2)
