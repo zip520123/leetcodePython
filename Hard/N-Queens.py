@@ -1,5 +1,5 @@
 # N-Queens
-# O(n), O(n)
+# O(n!), O(n^2)
 def solveNQueens(self, n: int) -> List[List[str]]:
     res = []
     mat = [["."]*n for _ in range(n)]
