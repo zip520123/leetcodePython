@@ -1,5 +1,5 @@
 # Maximum Length of a Concatenated String with Unique Characters
-# O(n^2), O(n^2)
+# O(2^n), O(n!)
 def maxLength(self, arr: List[str]) -> int:
     dp = [set()]
     for s in arr:
