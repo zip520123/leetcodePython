@@ -17,3 +17,24 @@ def pseudoPalindromicPaths (self, root: Optional[TreeNode]) -> int:
         dfs(node.right, currPath)
     dfs(root, defaultdict(int))
     return res
+
+# O(n), O(w), BFS
+def pseudoPalindromicPaths (self, root: Optional[TreeNode]) -> int:
+    res = 0
+    if root == None: return 0
+    q = [(defaultdict(int), root)]
+    while q:
+        temp = q
+        q = []
+        for path, node in temp:
+            curr_path = path.copy()
+            curr_path[node.val] += 1
+            if node.left == None and node.right == None:
+                odd = 0
+                for _, val in curr_path.items():
+                    if val % 2 == 1: odd += 1
+                if odd <= 1: res += 1
+                    
+            if node.left != None: q.append((curr_path, node.left))
+            if node.right != None: q.append((curr_path, node.right))
+    return res
