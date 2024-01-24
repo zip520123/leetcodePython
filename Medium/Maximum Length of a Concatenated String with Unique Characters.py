@@ -20,3 +20,20 @@ def maxLength(self, arr: List[str]) -> int:
             if group & curr_set: continue
             dp.append(group | curr_set)
     return max([len(x) for x in dp])
+
+def maxLength(self, arr: List[str]) -> int:
+    res = 0
+    n = len(arr)
+    def dfs(path, index):
+        nonlocal res
+        res = max(res, len(path))
+        if index == n:
+            return
+        for i in range(index, n):
+            curr_set = set(arr[i])
+            if len(curr_set) < len(arr[i]): continue
+            if path & curr_set: continue
+            dfs(path | curr_set, i+1)
+            
+    dfs(set(), 0)
+    return res
