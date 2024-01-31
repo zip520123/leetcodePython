@@ -1,8 +1,8 @@
 # Largest Number
 # O(n log n), O(n)
 class LargerNum(str):
-    def __lt__(x,y):
-        return x+y > y+x
+    def __lt__(self,other):
+        return self+other > other+self
 
 class Solution:
     def largestNumber(self, nums: List[int]) -> str:
