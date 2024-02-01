@@ -20,3 +20,24 @@ def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         if graph[i] > 0: return False
 
     return True
+
+# O(n), O(n)
+def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+    prere = defaultdict(int)
+    coursesLink = defaultdict(list)
+    for course, prereque in prerequisites:
+        prere[course] += 1
+        coursesLink[prereque].append(course)
+    queue = []
+    for i in range(numCourses):
+        if prere[i] == 0:
+            queue.append(i)
+    while queue:
+        course = queue.pop()
+        for nextCourse in coursesLink[course]:
+            prere[nextCourse] -= 1
+            if prere[nextCourse] == 0:
+                queue.append(nextCourse)
+    for i in range(numCourses):
+        if prere[i] > 0: return False
+    return True
