@@ -1,5 +1,5 @@
 # Valid Palindrome III
-# O(n^2), O(n^2)
+# O(n^2), O(n^2) distence between its reversed str divied by 2
 def isValidPalindrome(self, s: str, k: int) -> bool:
     n = len(s)
     dp = [[0]*(n+1) for _ in range(n+1) ]
@@ -18,7 +18,7 @@ def isValidPalindrome(self, s: str, k: int) -> bool:
 
     return dp[n][n] // 2 <= k
 
-# O(n^2), O(n^2)
+# O(n^2), O(n^2) Longest Palindromic Subsequence
 def isValidPalindrome(self, s: str, k: int) -> bool:
     n = len(s)
     dp = [[0]*(n+1) for _ in range(n+1) ]
