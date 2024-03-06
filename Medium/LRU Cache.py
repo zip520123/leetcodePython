@@ -58,3 +58,59 @@ class LRUCache:
             newNode = self.Node(key, value)
             self.add(newNode)
         
+
+# 
+class Node:
+    def __init__(self):
+        pass
+class LRUCache:
+    def __init__(self, capacity: int):
+        self.size = capacity
+        self.root = Node()
+        self.end = Node()
+        self.root.next = self.end
+        self.end.prev = self.root
+        self.memo = {}
+
+    def get(self, key: int) -> int:
+        if key in self.memo:
+            node = self.memo[key]
+            self.remove(node)
+            self.add(node)
+            return node.val
+        else:
+            return -1
+
+    def remove(self, node):
+        nextNode = node.next
+        prevNode = node.prev
+        prevNode.next = nextNode
+        nextNode.prev = prevNode
+        del self.memo[node.key]
+
+    def add(self, node):
+        temp = self.root.next
+        self.root.next = node
+        node.prev = self.root
+        node.next = temp
+        temp.prev = node
+        self.memo[node.key] = node
+
+    def removeLast(self):
+        lastNode = self.end.prev
+        self.remove(lastNode)
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.memo:
+            node = self.memo[key]
+            node.val = value
+            self.remove(node)
+            self.add(node)
+        else:
+            node = Node()
+            node.val = value
+            node.key = key
+            
+            self.add(node)
+            if len(self.memo) > self.size:
+                self.removeLast()
