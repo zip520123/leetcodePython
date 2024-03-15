@@ -13,3 +13,24 @@ def removeZeroSumSublists(self, head: Optional[ListNode]) -> Optional[ListNode]:
             end = end.next
         curr = curr.next
     return root.next
+
+
+# O(n), O(n)
+def removeZeroSumSublists(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    root = ListNode(0, head)
+    prefixSumToNode = {}
+
+    prefixSum = 0
+    curr = root
+    while curr:
+        prefixSum += curr.val
+        prefixSumToNode[prefixSum] = curr
+        curr = curr.next
+    
+    curr = root
+    prefixSum = 0
+    while curr:
+        prefixSum += curr.val
+        curr.next = prefixSumToNode[prefixSum].next
+        curr = curr.next
+    return root.next
