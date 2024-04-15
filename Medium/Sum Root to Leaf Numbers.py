@@ -11,3 +11,20 @@ def sumNumbers(self, root: Optional[TreeNode]) -> int:
         dfs(node.right, path * 10 + node.val)
     dfs(root)
     return res
+
+# O(n), O(n)
+def sumNumbers(self, root: Optional[TreeNode]) -> int:
+    if root == None: return 0
+    res = 0
+    queue = [(root, 0)]
+    while queue:
+        temp = queue
+        queue = []
+        for node, path in temp:
+            if node.left == None and node.right == None:
+                res += path*10 + node.val
+            if node.left:
+                queue.append((node.left, path*10+node.val))
+            if node.right:
+                queue.append((node.right, path*10+node.val))
+    return res
