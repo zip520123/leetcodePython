@@ -12,3 +12,16 @@ def bstToGst(self, root: TreeNode) -> TreeNode:
         
     dfs(root, 0)
     return root
+
+def bstToGst(self, root: TreeNode) -> TreeNode:
+    
+    def dfs(node: TreeNode, curr: int) -> int:
+        if node == None: return 0
+        right = dfs(node.right, curr)
+        left = dfs(node.left, node.val + curr + right)
+        temp = node.val
+        node.val += curr + right
+        return temp + left + right
+        
+    dfs(root, 0)
+    return root
