@@ -21,3 +21,17 @@ def sortArray(self, nums: List[int]) -> List[int]:
         res.append(right[r])
         r += 1
     return res
+
+# O(n), O(1)
+def sortArray(self, nums: List[int]) -> List[int]:
+    n = len(nums)
+    counting = [0 for _ in range(-5 * 10 ** 4, 5 * 10 ** 4 + 1)]
+    for n in nums:
+        counting[n+5 * 10 ** 4] += 1
+    res = []
+    for i in range(len(counting)):
+        freq = counting[i]
+        n = i - 5 * 10 ** 4
+        for _ in range(freq):
+            res.append(n)
+    return res
