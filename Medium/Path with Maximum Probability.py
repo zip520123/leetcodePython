@@ -1,5 +1,5 @@
 # Path with Maximum Probability
-# O(n log n), O(n)
+# O(e log n), O(n)
 def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], start: int, end: int) -> float:
     graph = defaultdict(list)
     for i, (u, v) in enumerate(edges):
@@ -19,6 +19,7 @@ def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], 
                 heapq.heappush(pq, (nextProb*prob, nextNode))
     return 0
 
+# O(e log n), O(n)
 def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], start_node: int, end_node: int) -> float:
     graph = defaultdict(list)
     
