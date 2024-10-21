@@ -1,5 +1,5 @@
 # Find Kth Bit in Nth Binary String
-# O(n), O(n)
+# O(2^n), O(n)
 def findKthBit(self, n: int, k: int) -> str:
     res = [0]
     for _ in range(n-1):
