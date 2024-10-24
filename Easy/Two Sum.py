@@ -1,5 +1,5 @@
 # Two Sum
-# O(n), O()
+# O(n), O(n)
 def twoSum(self, nums: List[int], target: int) -> List[int]:
     memo = {}
     for i in range(len(nums)):
