@@ -26,3 +26,19 @@ def leastInterval(self, tasks: List[str], n: int) -> int:
             arr.append("")
 
     return len(arr)
+
+# O(n), O(n)
+def leastInterval(self, tasks: List[str], n: int) -> int:
+    
+    memo = defaultdict(int)
+    for t in tasks:
+        memo[t] += 1
+    max_count = 0
+    for val in memo.values():
+        max_count = max(max_count, val)
+    
+    time = (max_count-1) * (n + 1)
+    for val in memo.values():
+        if val == max_count:
+            time += 1
+    return max(len(tasks),time)
