@@ -1,20 +1,30 @@
 # Reorganize String
 # O(n log n), O(n)
 def reorganizeString(self, s: str) -> str:
+    memo = defaultdict(int)
+    for char in s:
+        memo[char] += 1
+    heap = []
+    for key, val in memo.items():
+        heapq.heappush(heap, (-val, key))
     res = ""
-    pq = [(-count, char) for char, count in Counter(s).items()]
-    heapify(pq)
-    while pq:
-        firstCount, firstChar = heappop(pq)
-        if res == "" or res[-1] != firstChar:
-            res += firstChar
-            if firstCount + 1 < 0:
-                heappush(pq, (firstCount + 1, firstChar))
+    while heap:
+        curr = heapq.heappop(heap)
+        val, key = -curr[0], curr[1]
+        if res and res[-1] == key:
+            
+            if len(heap) == 0:
+                return ""
+            second_element = heapq.heappop(heap)
+            second_val, second_key = -second_element[0], second_element[1]
+            res += second_key
+            second_val -= 1
+            if second_val:
+                heapq.heappush(heap, (-second_val, second_key))
+            heapq.heappush(heap, (-val, key))
         else:
-            if len(pq) == 0: return ""
-            secondCount, secondChar = heappop(pq)
-            res += secondChar
-            if secondCount + 1 < 0:
-                heappush(pq,(secondCount+1, secondChar))
-            heappush(pq, (firstCount, firstChar))
+            res += key
+            val -= 1
+            if val:
+                heapq.heappush(heap, (-val, key))
     return res
