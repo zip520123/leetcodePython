@@ -15,3 +15,27 @@ def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
         if left != None: return left
         return right
     return dfs(root)
+
+def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
+    root = p
+    while root.parent != None:
+        root = root.parent
+
+    def dfs(node) -> 'Node':
+        if node == None:
+            return None
+        if node.val == p.val or node.val == q.val:
+            return node
+        left = dfs(node.left)
+        right = dfs(node.right)
+        if left == None and right == None:
+            return None
+        if left and right:
+            return node
+        if left:
+            return left
+        if right:
+            return right
+        return node
+    
+    return dfs(root)
