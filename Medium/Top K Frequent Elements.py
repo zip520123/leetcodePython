@@ -21,3 +21,20 @@ def topKFrequent(self, nums: List[int], k: int) -> List[int]:
     for val, key in heap:
         res.append(key)
     return res
+
+# O(n log n), O(n)
+def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+    memo = defaultdict(int)
+    for n in nums:
+        memo[n] += 1
+    
+    arr = []
+    for key, val in memo.items():
+        arr.append((-val, key))
+    
+    arr.sort()
+
+    res = []
+    for i in range(k):
+        res.append(arr[i][1])
+    return res
