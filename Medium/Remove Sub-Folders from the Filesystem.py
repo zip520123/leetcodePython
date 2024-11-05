@@ -26,3 +26,24 @@ class Solution:
                 res.append(f)
 
         return res
+
+class Solution:
+    def removeSubfolders(self, folder: List[str]) -> List[str]:
+        folder.sort()
+        root = Trie()
+        res = []
+        for f in folder:
+            arr = f.split("/")
+            curr = root
+            isSub_Folder = False
+            for name in arr[1:]:
+                if curr.isEnd:
+                    isSub_Folder = True
+                    break
+                if name not in curr.memo:
+                    curr.memo[name] = Trie()
+                curr = curr.memo[name]
+            curr.isEnd = True
+            if isSub_Folder == False:
+                res.append(f)
+        return res
