@@ -26,3 +26,22 @@ def letterCombinations(self, digits: str) -> List[str]:
                     dfs(i+1, path+digit)
     dfs(0,"")
     return res
+
+# O(4^n), O(4^n)
+def letterCombinations(self, digits: str) -> List[str]:
+    if len(digits) == 0:
+        return []
+    memo = { 2: "abc", 3:"def", 4:"ghi", 5:"jkl", 6:"mno", 7:"pqrs", 8:"tuv", 9:"wxyz"}
+
+    queue = [""]
+    for char in digits:
+        n = int(char)
+        if n in memo:
+            temp = queue
+            queue = []
+            
+            for node in temp:
+                for next_char in memo[n]:
+                    queue.append(node + next_char)
+
+    return queue
