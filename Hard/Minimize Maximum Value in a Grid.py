@@ -1,23 +1,19 @@
 # Minimize Maximum Value in a Grid
 # O(m*n log m*n), O(m*n)
 def minScore(self, grid: List[List[int]]) -> List[List[int]]:
-    row, col = len(grid), len(grid[0])
+    rows, cols = len(grid), len(grid[0])
 
-    nums = []
+    row_arr = [1] * rows
+    col_arr = [1] * cols
+    arr = []
+    for row in range(rows):
+        for col in range(cols):
+            arr.append((grid[row][col], row, col))
+    arr.sort()
 
-    rows = [1 for i in range(row)]
-    cols = [1 for i in range(col)]
-
-    for i in range(row):
-        for j in range(col):
-            nums.append((grid[i][j], i, j))
-
-    nums.sort()
-    for tup in nums:
-        _, i, j = tup
-
-        val = max(rows[i], cols[j])
-        grid[i][j] = val
-
-        rows[i], cols[j] = val + 1, val + 1
+    for n, row, col in arr:
+        val = max(row_arr[row], col_arr[col])
+        grid[row][col] = val
+        row_arr[row] = val + 1 
+        col_arr[col] = val + 1
     return grid
