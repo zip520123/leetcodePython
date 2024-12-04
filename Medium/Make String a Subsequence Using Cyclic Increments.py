@@ -11,6 +11,5 @@ def canMakeSubsequence(self, str1: str, str2: str) -> bool:
         if str1[l] == str2[r] or cyclically[str1[l]] == str2[r]:
             r += 1
         l += 1
-    if r == len(str2):
-        return True
-    return False
+
+    return r == len(str2)
