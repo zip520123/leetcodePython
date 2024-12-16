@@ -1,5 +1,5 @@
 # Final Array State After K Multiplication Operations I
-# O(n), O(1)
+# O(n*k), O(1)
 def getFinalState(self, nums: List[int], k: int, multiplier: int) -> List[int]:
     for _ in range(k):
         min_i = 0
