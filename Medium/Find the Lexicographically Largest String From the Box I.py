@@ -25,3 +25,10 @@ def answerString(self, word: str, numFriends: int) -> str:
             curr = word[i:i+curr_size]
             res = max_lex(res, curr)
     return res
+
+# O(nm), O(1)
+def answerString(self, word: str, numFriends: int) -> str:
+    if numFriends == 1:
+        return word
+    size = len(word) - numFriends + 1
+    return max(word[i:i+size] for i in range(len(word)))
