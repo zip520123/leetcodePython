@@ -18,4 +18,4 @@ def vowelStrings(self, words: List[str], queries: List[List[int]]) -> List[int]:
         if words[i-1][0] in "aeiou" and words[i-1][-1] in "aeiou":
             prefix[i] += 1
     
-    return [ prefix[end+1]-prefix[start] for start, end in queries]
+    return [prefix[end + 1] - prefix[start] for start, end in queries]
