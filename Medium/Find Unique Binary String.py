@@ -17,3 +17,14 @@ def findDifferentBinaryString(self, nums: List[str]) -> str:
             return curr
     
     return ""
+
+def findDifferentBinaryString(self, nums: List[str]) -> str:
+    n_set = set()
+    l = len(nums[0])
+    for s in nums:
+        num = int(s, 2)
+        n_set.add(num)
+    for i in range(2 ** 32):
+        if i not in n_set:
+            return "{0:{fill}{l}b}".format(i, fill="0", l=l)
+    return ""
