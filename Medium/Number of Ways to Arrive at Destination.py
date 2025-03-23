@@ -2,24 +2,24 @@
 # O((n+e)logn) time complexity, O(n+e) space complexity
 def countPaths(self, n: int, roads: List[List[int]]) -> int:
     graph = defaultdict(list)
-    for a, b, t in roads:
-        graph[a].append((b,t))
-        graph[b].append((a,t))
-    shortest_time = [math.inf] * n
-    path_count = [0] * n
-    path_count[0] = 1
-    heap = [(0,0)] 
+    for start, end, travel_time in roads:
+        graph[start].append((end, travel_time))
+        graph[end].append((start, travel_time))
+    min_travel_time = [math.inf] * n
+    ways_to_reach = [0] * n
+    ways_to_reach[0] = 1
+    priority_queue = [(0, 0)] 
     MOD = (10 ** 9) + 7
-    while heap:
-        curr_time, curr_node = heapq.heappop(heap)
-        if curr_time > shortest_time[curr_node]:
+    while priority_queue:
+        current_time, current_node = heapq.heappop(priority_queue)
+        if current_time > min_travel_time[current_node]:
             continue
-        for next_node, road_time in graph[curr_node]:
-            if curr_time + road_time < shortest_time[next_node]:
-                shortest_time[next_node] = curr_time + road_time
-                path_count[next_node] = path_count[curr_node]
-                heapq.heappush(heap, (curr_time + road_time, next_node))
-            elif curr_time + road_time == shortest_time[next_node]:
-                path_count[next_node] += path_count[curr_node] % MOD
+        for neighbor, time_to_neighbor in graph[current_node]:
+            if current_time + time_to_neighbor < min_travel_time[neighbor]:
+                min_travel_time[neighbor] = current_time + time_to_neighbor
+                ways_to_reach[neighbor] = ways_to_reach[current_node]
+                heapq.heappush(priority_queue, (current_time + time_to_neighbor, neighbor))
+            elif current_time + time_to_neighbor == min_travel_time[neighbor]:
+                ways_to_reach[neighbor] += ways_to_reach[current_node] % MOD
 
-    return path_count[n-1] % MOD
+    return ways_to_reach[n-1] % MOD
