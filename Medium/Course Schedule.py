@@ -41,3 +41,28 @@ def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
     for i in range(numCourses):
         if prere[i] > 0: return False
     return True
+
+# O(n), O(n)
+def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+    visit_list = [0] * numCourses
+    # 0 non visited, 1 visiting, 2 visited
+    graph = defaultdict(list)
+    for coures, pre in prerequisites:
+        graph[pre].append(coures)
+
+    def dfs(node) -> bool:
+        if visit_list[node] == 1: 
+            return False
+        if visit_list[node] == 2:
+            return True
+        visit_list[node] = 1 # visiting
+        for next_coures in graph[node]:
+            if dfs(next_coures) == False:
+                return False
+        visit_list[node] = 2 # visited
+        return True
+    
+    for node in range(numCourses):
+        if dfs(node) == False:
+            return False
+    return True
