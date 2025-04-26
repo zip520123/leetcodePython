@@ -1,5 +1,5 @@
 # Smallest Rectangle Enclosing Black Pixels
-# O(n), O(1)
+# O(mn), O(1)
 def minArea(self, image: List[List[str]], x: int, y: int) -> int:
     top, bottom = x, x
     left, right = y, y
