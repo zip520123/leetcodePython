@@ -74,3 +74,36 @@ def calculate(self, s: str) -> int:
         last_val = int(last_val / curr)
     
     return res + last_val
+
+# O(n), O(1)
+def calculate(self, s: str) -> int:
+    i = 0
+    sign = "+"
+    s += "+"
+    m1, m2, res = 0, 0, 0
+    
+    for i in range(len(s)):
+        curr = s[i]
+        if curr == " ":
+            continue
+        if curr not in "+-*/":
+            n = int(curr)
+            m1 *= 10
+            m1 += n
+        else:
+            if sign == "+":
+                res += m2
+                m2 = m1
+                m1 = 0
+            elif sign == "-":
+                res += m2
+                m2 = -m1
+                m1 = 0
+            elif sign == "*":
+                m2 *= m1
+                m1 = 0
+            elif sign == "/":
+                m2 = int(m2 / m1)
+                m1 = 0
+            sign = curr
+    return res + m2
