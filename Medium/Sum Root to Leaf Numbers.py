@@ -28,3 +28,38 @@ def sumNumbers(self, root: Optional[TreeNode]) -> int:
             if node.right:
                 queue.append((node.right, path*10+node.val))
     return res
+
+# O(n), O(n)
+def sumNumbers(self, root: Optional[TreeNode]) -> int:
+    res = 0
+
+    def dfs(curr: TreeNode, num: int) :
+        nonlocal res
+        currN = curr.val
+
+        if curr.left:
+            dfs(curr.left, num*10 + currN)
+        if curr.right:
+            dfs(curr.right, num*10 + currN)
+        if curr.left == None and curr.right == None:
+            res += num*10 + currN
+        
+    dfs(root, 0)
+
+    return res
+
+# O(n), O(n)
+def sumNumbers(self, root: Optional[TreeNode]) -> int:
+
+    def dfs(curr: TreeNode, num: int) -> int:
+        res = 0
+
+        if curr.left:
+            res += dfs(curr.left, num*10 + curr.val)
+        if curr.right:
+            res += dfs(curr.right, num*10 + curr.val)
+        if curr.left == None and curr.right == None:
+            return num*10 + curr.val
+        return res
+
+    return dfs(root, 0)
