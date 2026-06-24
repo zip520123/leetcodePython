@@ -18,7 +18,7 @@ def lengthOfLongestSubstring(self, s: str) -> int:
         r += 1
     return res
 
-# O(n), O(n)
+# O(n), O(1)
 def lengthOfLongestSubstring(self, s: str) -> int:
     memo = defaultdict(int)
     res = 0
