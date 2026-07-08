@@ -35,3 +35,27 @@ def pairSum(self, head: Optional[ListNode]) -> int:
         prev = prev.next
         curr = curr.next
     return res
+
+# O(n), O(1)
+def pairSum(self, head: Optional[ListNode]) -> int:
+    slow, fast = head, head
+    while fast.next and fast.next.next:
+        slow = slow.next
+        fast = fast.next.next
+    curr = slow.next
+    slow.next = None
+    prev = None
+    
+    while curr:
+        temp = curr.next
+        curr.next = prev
+        prev = curr
+        curr = temp
+    res = 0
+    left = head
+    right = prev
+    while left:
+        res = max(res, left.val + right.val)
+        left = left.next
+        right = right.next
+    return res
