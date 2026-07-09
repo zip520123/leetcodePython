@@ -48,4 +48,35 @@ def exist(self, board: List[List[str]], word: str) -> bool:
             if dfs(0, row, col):
                 return True
     return False
-        
+
+# O(board*word), O(n)
+def exist(self, board: List[List[str]], word: str) -> bool:
+    rows, cols = len(board), len(board[0])
+
+    def dfs(x:int, y: int, i: int) -> bool:
+        if i == len(word):
+            return True
+        if x < 0 or x >= rows or y < 0 or y >= cols:
+            return False
+        if board[x][y] != word[i]:
+            return False
+        temp = board[x][y]
+        board[x][y] = "*"
+
+        if dfs(x+1, y, i+1):
+            return True
+        if dfs(x, y+1, i+1):
+            return True
+        if dfs(x-1, y, i+1):
+            return True
+        if dfs(x, y-1, i+1):
+            return True
+        board[x][y] = temp
+        return False
+    
+    
+    for row in range(rows):
+        for col in range(cols):
+            if dfs(row, col, 0):
+                return True
+    return False 
