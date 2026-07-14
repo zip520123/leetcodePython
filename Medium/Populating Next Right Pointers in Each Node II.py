@@ -18,3 +18,27 @@ def connect(self, root: 'Node') -> 'Node':
             curr = curr.next
         curr = head
     return root
+
+# O(n), O(1)
+def connect(self, root: 'Node') -> 'Node':
+    def append(child):
+        nonlocal head, tail
+        if child == None:
+            return
+        if head == None:
+            head = child
+            tail = child
+        else:
+            tail.next = child
+            tail = child
+        
+    curr = root
+    while curr:
+        head = None
+        tail = None
+        while curr:
+            append(curr.left)
+            append(curr.right)
+            curr = curr.next
+        curr = head
+    return root
