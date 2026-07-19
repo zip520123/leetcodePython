@@ -18,3 +18,21 @@ def check(a,b,c) -> int:
         if a==0 and b==0:
             return 1
     return 0 
+
+# O(n), O(1)
+def minFlips(self, a: int, b: int, c: int) -> int:
+    res = 0
+    while a or b or c:
+        abit = a & 1
+        bbit = b & 1
+        cbit = c & 1
+        if cbit:
+            if abit == 0 and bbit == 0:
+                res += 1
+        else:
+            res += abit + bbit
+        a >>= 1
+        b >>= 1
+        c >>= 1
+
+    return res
